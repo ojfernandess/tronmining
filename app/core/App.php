@@ -68,11 +68,44 @@ class App {
      * @return void
      */
     public function run() {
-        // Load routes
-        $this->loadRoutes();
-        
-        // Dispatch request
-        Router::dispatch();
+        try {
+            // Load routes
+            $this->loadRoutes();
+            
+            // Dispatch request
+            Router::dispatch();
+        } catch (\Throwable $e) {
+            // Log detailed error for debugging
+            error_log('CRITICAL ERROR: ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
+            error_log($e->getTraceAsString());
+            
+            // Show friendly error page in production or detailed error in development
+            if ($this->config['app']['env'] === 'production') {
+                header("HTTP/1.1 500 Internal Server Error");
+                
+                // Check if 500 view exists
+                $errorFile = APP_PATH . '/views/errors/500.php';
+                
+                if (file_exists($errorFile)) {
+                    require_once $errorFile;
+                } else {
+                    echo "<h1>500 Internal Server Error</h1>";
+                    echo "<p>Sorry, something went wrong on the server.</p>";
+                }
+            } else {
+                // Show detailed error in development
+                header("HTTP/1.1 500 Internal Server Error");
+                echo "<h1>500 Internal Server Error</h1>";
+                echo "<p><strong>Type:</strong> " . get_class($e) . "</p>";
+                echo "<p><strong>Message:</strong> " . $e->getMessage() . "</p>";
+                echo "<p><strong>File:</strong> " . $e->getFile() . "</p>";
+                echo "<p><strong>Line:</strong> " . $e->getLine() . "</p>";
+                echo "<h2>Stack Trace:</h2>";
+                echo "<pre>" . $e->getTraceAsString() . "</pre>";
+            }
+            
+            exit;
+        }
     }
     
     /**

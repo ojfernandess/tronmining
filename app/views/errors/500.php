@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>500 - Server Error | Tronmining</title>
-    <link rel="stylesheet" href="<?php echo getenv('APP_URL'); ?>/public/assets/css/style.css">
+    <title>500 - Erro Interno do Servidor</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
             color: #333;
             margin: 0;
             padding: 0;
@@ -20,50 +19,46 @@
         }
         .error-container {
             background-color: #fff;
-            padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
             max-width: 500px;
-            width: 100%;
+            width: 90%;
         }
-        .error-code {
-            font-size: 80px;
-            font-weight: bold;
-            color: #e74c3c;
+        h1 {
+            font-size: 72px;
             margin: 0;
+            color: #e74c3c;
         }
-        .error-title {
-            font-size: 24px;
-            margin: 10px 0 20px;
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
         }
-        .error-message {
-            color: #666;
+        p {
+            font-size: 16px;
+            line-height: 1.5;
             margin-bottom: 30px;
         }
-        .home-button {
+        .btn {
             display: inline-block;
             background-color: #3498db;
             color: #fff;
-            padding: 12px 24px;
-            border-radius: 4px;
             text-decoration: none;
-            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
             transition: background-color 0.3s;
         }
-        .home-button:hover {
+        .btn:hover {
             background-color: #2980b9;
         }
     </style>
 </head>
 <body>
     <div class="error-container">
-        <h1 class="error-code">500</h1>
-        <h2 class="error-title">Internal Server Error</h2>
-        <p class="error-message">
-            Oops! Something went wrong on our end. We're working to fix the issue.
-            Please try again later or contact support if the problem persists.
-        </p>
-        <a href="<?php echo getenv('APP_URL'); ?>" class="home-button">Back to Home</a>
+        <h1>500</h1>
+        <h2>Erro Interno do Servidor</h2>
+        <p>Ocorreu um erro ao processar sua solicitação. Nossa equipe técnica foi notificada e está trabalhando para resolver o problema.</p>
+        <a href="/" class="btn">Voltar para Home</a>
     </div>
 </body>
 </html> 

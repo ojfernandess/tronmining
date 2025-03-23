@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found | Tronmining</title>
-    <link rel="stylesheet" href="<?php echo getenv('APP_URL'); ?>/public/assets/css/style.css">
+    <title>404 - Página não encontrada</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
             color: #333;
             margin: 0;
             padding: 0;
@@ -20,50 +19,46 @@
         }
         .error-container {
             background-color: #fff;
-            padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
             max-width: 500px;
-            width: 100%;
+            width: 90%;
         }
-        .error-code {
-            font-size: 80px;
-            font-weight: bold;
-            color: #e74c3c;
+        h1 {
+            font-size: 72px;
             margin: 0;
+            color: #e74c3c;
         }
-        .error-title {
-            font-size: 24px;
-            margin: 10px 0 20px;
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
         }
-        .error-message {
-            color: #666;
+        p {
+            font-size: 16px;
+            line-height: 1.5;
             margin-bottom: 30px;
         }
-        .home-button {
+        .btn {
             display: inline-block;
             background-color: #3498db;
             color: #fff;
-            padding: 12px 24px;
-            border-radius: 4px;
             text-decoration: none;
-            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
             transition: background-color 0.3s;
         }
-        .home-button:hover {
+        .btn:hover {
             background-color: #2980b9;
         }
     </style>
 </head>
 <body>
     <div class="error-container">
-        <h1 class="error-code">404</h1>
-        <h2 class="error-title">Page Not Found</h2>
-        <p class="error-message">
-            The page you are looking for doesn't exist or has been moved.
-            Please check the URL and try again.
-        </p>
-        <a href="<?php echo getenv('APP_URL'); ?>" class="home-button">Back to Home</a>
+        <h1>404</h1>
+        <h2>Página não encontrada</h2>
+        <p>A página que você está procurando não existe ou pode ter sido movida.</p>
+        <a href="/" class="btn">Voltar para Home</a>
     </div>
 </body>
 </html> 

@@ -9,6 +9,38 @@ define('ROOT_PATH', __DIR__);
 define('APP_PATH', __DIR__ . '/app');
 define('PUBLIC_PATH', __DIR__ . '/public');
 
+// Set error reporting based on environment
+if (getenv('APP_DEBUG') === 'true') {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+} else {
+    error_reporting(0);
+    ini_set('display_errors', 0);
+}
+
+// Set error and exception handlers
+set_error_handler(function($severity, $message, $file, $line) {
+    if (!(error_reporting() & $severity)) {
+        // This error code is not included in error_reporting
+        return;
+    }
+    throw new ErrorException($message, 0, $severity, $file, $line);
+});
+
+set_exception_handler(function($exception) {
+    error_log("Uncaught Exception: " . $exception->getMessage() . " in " . $exception->getFile() . " on line " . $exception->getLine());
+    error_log($exception->getTraceAsString());
+    
+    http_response_code(500);
+    if (file_exists(APP_PATH . '/views/errors/500.php')) {
+        require APP_PATH . '/views/errors/500.php';
+    } else {
+        echo "<h1>500 Internal Server Error</h1>";
+        echo "<p>An unexpected error occurred. Please try again later.</p>";
+    }
+    exit;
+});
+
 // Load environment variables
 if (file_exists(ROOT_PATH . '/.env')) {
     $dotenv = parse_ini_file(ROOT_PATH . '/.env');
@@ -22,15 +54,6 @@ if (file_exists(ROOT_PATH . '/.env')) {
 if (!file_exists(ROOT_PATH . '/.env') && !isset($_GET['install'])) {
     header('Location: install/index.php');
     exit;
-}
-
-// Set error reporting based on environment
-if (getenv('APP_DEBUG') === 'true') {
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-} else {
-    error_reporting(0);
-    ini_set('display_errors', 0);
 }
 
 // Autoload classes
