@@ -4,6 +4,23 @@
  * Installation Script
  */
 
+// Habilitar exibição de erros para depuração
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Definir handler de exceções para prevenir erro 500
+set_exception_handler(function($exception) {
+    header("HTTP/1.1 500 Internal Server Error");
+    echo "<h1>Erro durante a instalação</h1>";
+    echo "<p>Ocorreu um erro durante o processo de instalação:</p>";
+    echo "<pre style='background: #f8f8f8; padding: 10px; border: 1px solid #ddd; border-radius: 4px;'>";
+    echo $exception->getMessage() . "\n";
+    echo "No arquivo: " . $exception->getFile() . " (linha " . $exception->getLine() . ")";
+    echo "</pre>";
+    echo "<p><a href='index.php'>Voltar para o início da instalação</a></p>";
+    exit;
+});
+
 // Define paths
 define('ROOT_PATH', dirname(__DIR__));
 define('INSTALL_PATH', __DIR__);
