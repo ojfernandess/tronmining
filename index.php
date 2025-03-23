@@ -9,10 +9,14 @@ define('ROOT_PATH', __DIR__);
 define('APP_PATH', __DIR__ . '/app');
 define('PUBLIC_PATH', __DIR__ . '/public');
 
+// Definir modo de depuração - TRUE para desenvolvimento, FALSE para produção
+define('DEBUG_MODE', true);
+
 // Set error reporting based on environment
-if (getenv('APP_DEBUG') === 'true') {
-    error_reporting(E_ALL);
+if (DEBUG_MODE) {
     ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 } else {
     error_reporting(0);
     ini_set('display_errors', 0);
@@ -37,6 +41,7 @@ set_exception_handler(function($exception) {
     } else {
         echo "<h1>500 Internal Server Error</h1>";
         echo "<p>An unexpected error occurred. Please try again later.</p>";
+        echo "<p>Error: " . $exception->getMessage() . "</p>";
     }
     exit;
 });
@@ -67,14 +72,21 @@ spl_autoload_register(function ($className) {
     // Create the file path
     $filePath = APP_PATH . '/' . $className . '.php';
     
+    // Debug log para verificar qual arquivo está tentando carregar
+    error_log("Tentando carregar classe: $className -> $filePath");
+    
     // Check if file exists
     if (file_exists($filePath)) {
         require_once $filePath;
         return true;
     }
     
+    error_log("Arquivo não encontrado: $filePath");
     return false;
 });
+
+// Adicione esta linha para depuração do roteamento
+error_log("URI solicitada: " . $_SERVER['REQUEST_URI']);
 
 // Load core classes explicitly to ensure proper loading order
 require_once APP_PATH . '/core/Router.php';
