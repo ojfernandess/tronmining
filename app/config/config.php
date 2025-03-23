@@ -5,15 +5,31 @@
  * This file loads environment variables and sets up application configuration
  */
 
-// Define the application version
-define('APP_VERSION', '1.0.0');
+// Define the application version if not defined
+if (!defined('APP_VERSION')) {
+    define('APP_VERSION', '1.0.0');
+}
 
-// Define the root path for the application
-define('ROOT_PATH', realpath(dirname(__FILE__) . '/../../'));
-define('APP_PATH', ROOT_PATH . '/app');
-define('PUBLIC_PATH', ROOT_PATH . '/public');
-define('STORAGE_PATH', ROOT_PATH . '/storage');
-define('VENDOR_PATH', ROOT_PATH . '/vendor');
+// Define the root path for the application if not defined
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', realpath(dirname(__FILE__) . '/../../'));
+}
+
+if (!defined('APP_PATH')) {
+    define('APP_PATH', ROOT_PATH . '/app');
+}
+
+if (!defined('PUBLIC_PATH')) {
+    define('PUBLIC_PATH', ROOT_PATH . '/public');
+}
+
+if (!defined('STORAGE_PATH')) {
+    define('STORAGE_PATH', ROOT_PATH . '/storage');
+}
+
+if (!defined('VENDOR_PATH')) {
+    define('VENDOR_PATH', ROOT_PATH . '/vendor');
+}
 
 // Load environment variables
 $env_file = ROOT_PATH . '/.env';

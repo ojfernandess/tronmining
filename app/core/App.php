@@ -1,8 +1,6 @@
 <?php
 namespace App\Core;
 
-use App\Core\Router;
-
 /**
  * App Class
  * 
@@ -42,7 +40,7 @@ class App {
         // Load configuration
         $this->loadConfig();
         
-        // Define application path constants
+        // Define path constants
         $this->definePathConstants();
         
         // Set router base path
@@ -99,12 +97,26 @@ class App {
      * @return void
      */
     private function definePathConstants() {
-        // Define application path constants
-        define('APP_PATH', dirname(__DIR__));
-        define('ROOT_PATH', dirname(APP_PATH));
-        define('PUBLIC_PATH', ROOT_PATH . '/public');
-        define('VIEWS_PATH', APP_PATH . '/views');
-        define('UPLOADS_PATH', PUBLIC_PATH . '/uploads');
+        // Only define constants if they don't already exist
+        if (!defined('APP_PATH')) {
+            define('APP_PATH', dirname(__DIR__));
+        }
+        
+        if (!defined('ROOT_PATH')) {
+            define('ROOT_PATH', dirname(APP_PATH));
+        }
+        
+        if (!defined('PUBLIC_PATH')) {
+            define('PUBLIC_PATH', ROOT_PATH . '/public');
+        }
+        
+        if (!defined('VIEWS_PATH')) {
+            define('VIEWS_PATH', APP_PATH . '/views');
+        }
+        
+        if (!defined('UPLOADS_PATH')) {
+            define('UPLOADS_PATH', PUBLIC_PATH . '/uploads');
+        }
     }
     
     /**
@@ -165,7 +177,7 @@ class App {
             header('HTTP/1.1 500 Internal Server Error');
             
             // Check if 500 view exists
-            $errorFile = VIEWS_PATH . '/errors/500.php';
+            $errorFile = APP_PATH . '/views/errors/500.php';
             
             if (file_exists($errorFile)) {
                 require_once $errorFile;
