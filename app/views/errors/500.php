@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             padding: 40px;
-            max-width: 500px;
+            max-width: 700px;
             width: 90%;
         }
         h1 {
@@ -37,7 +37,7 @@
         p {
             font-size: 16px;
             line-height: 1.5;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
         .btn {
             display: inline-block;
@@ -47,9 +47,28 @@
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s;
+            margin-top: 15px;
         }
         .btn:hover {
             background-color: #2980b9;
+        }
+        .debug-info {
+            margin-top: 20px;
+            text-align: left;
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            overflow: auto;
+        }
+        code {
+            font-family: monospace;
+            display: block;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #eee;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -59,6 +78,31 @@
         <h2>Erro Interno do Servidor</h2>
         <p>Ocorreu um erro ao processar sua solicitação. Nossa equipe técnica foi notificada e está trabalhando para resolver o problema.</p>
         <a href="/" class="btn">Voltar para Home</a>
+        
+        <?php if (defined('DEBUG_MODE') && DEBUG_MODE === true): ?>
+        <div class="debug-info">
+            <h3>Informações de Diagnóstico:</h3>
+            <?php if (isset($error_message)): ?>
+            <p><strong>Erro:</strong> <?php echo htmlspecialchars($error_message); ?></p>
+            <?php endif; ?>
+            
+            <?php if (isset($error_file)): ?>
+            <p><strong>Arquivo:</strong> <?php echo htmlspecialchars($error_file); ?></p>
+            <?php endif; ?>
+            
+            <?php if (isset($error_line)): ?>
+            <p><strong>Linha:</strong> <?php echo (int)$error_line; ?></p>
+            <?php endif; ?>
+            
+            <?php if (isset($error_trace) && is_string($error_trace)): ?>
+            <p><strong>Stack Trace:</strong></p>
+            <code><?php echo htmlspecialchars($error_trace); ?></code>
+            <?php endif; ?>
+            
+            <p><strong>URI:</strong> <?php echo htmlspecialchars($_SERVER['REQUEST_URI'] ?? ''); ?></p>
+            <p><strong>Método:</strong> <?php echo htmlspecialchars($_SERVER['REQUEST_METHOD'] ?? ''); ?></p>
+        </div>
+        <?php endif; ?>
     </div>
 </body>
 </html> 

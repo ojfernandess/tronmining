@@ -7,9 +7,21 @@
 
 use App\Core\Router;
 
-// Home/Landing page
-Router::get('/', 'HomeController@index');
-Router::get('/home', 'HomeController@index');
+error_log("Carregando rotas da aplicação em " . __FILE__);
+
+// Rota para a página inicial - Deve corresponder a '/'
+Router::get('/', function() {
+    echo '<h1>Bem-vindo ao Tronmining</h1>';
+    echo '<p>O sistema está funcionando corretamente.</p>';
+    echo '<p>Você pode começar a configurar o sistema ou acessar o <a href="/admin">painel administrativo</a>.</p>';
+});
+
+// Home/Landing page - rota alternativa
+Router::get('/home', function() {
+    echo '<h1>Bem-vindo ao Tronmining</h1>';
+    echo '<p>O sistema está funcionando corretamente.</p>';
+    echo '<p>Você pode começar a configurar o sistema ou acessar o <a href="/admin">painel administrativo</a>.</p>';
+});
 
 // Authentication routes
 Router::get('/login', 'AuthController@loginForm');
@@ -124,4 +136,7 @@ $router->setErrorHandler(function() {
     http_response_code(404);
     include APP_PATH . '/views/errors/404.php';
 });
-*/ 
+*/
+
+// Log para depuração
+error_log("Rotas carregadas: " . print_r(Router::$routes, true)); 
