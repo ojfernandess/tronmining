@@ -53,7 +53,10 @@ spl_autoload_register(function ($className) {
     return false;
 });
 
-// Initialize the application
+// Load core classes explicitly to ensure proper loading order
+require_once APP_PATH . '/core/Router.php';
 require_once APP_PATH . '/core/App.php';
+
+// Initialize the application
 $app = \App\Core\App::getInstance();
 $app->run(); 
