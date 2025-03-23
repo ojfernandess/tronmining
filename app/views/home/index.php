@@ -3,140 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ?? 'Tronmining'; ?></title>
-    <meta name="description" content="<?php echo $description ?? 'Plataforma de mineração de criptomoedas'; ?>">
+    <title><?php echo $title ?? 'Tronmining - Plataforma de Mineração'; ?></title>
     <link rel="stylesheet" href="/public/assets/css/style.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
             color: #333;
+        }
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        nav ul li {
-            margin-left: 20px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #3498db;
+            background-color: #2d3748;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
         }
         .hero {
+            background-color: #4299e1;
+            color: white;
+            padding: 3rem 0;
             text-align: center;
-            padding: 80px 0;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            margin-bottom: 40px;
+            margin-bottom: 2rem;
         }
         .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
         .hero p {
-            font-size: 18px;
-            color: #7f8c8d;
-            margin-bottom: 30px;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #2980b9;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .features {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            margin: 40px 0;
+            margin-bottom: 2rem;
         }
         .feature {
-            flex-basis: 30%;
-            background-color: #fff;
-            padding: 30px;
+            flex: 0 0 30%;
+            background-color: white;
+            padding: 1.5rem;
             border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
         }
         .feature h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-top: 0;
+            color: #3182ce;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3182ce;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #2c5282;
         }
         footer {
+            background-color: #2d3748;
+            color: white;
             text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-            border-top: 1px solid #eee;
-            color: #7f8c8d;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">Tronmining</div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/packages">Pacotes</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Registro</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h2>TRONMINING</h2>
+            <nav>
+                <a href="/">Home</a> |
+                <a href="/login">Login</a> |
+                <a href="/register">Registro</a> |
+                <a href="/about">Sobre</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
+    <section class="hero">
+        <div class="container">
             <h1><?php echo $title ?? 'Bem-vindo ao Tronmining'; ?></h1>
-            <p><?php echo $description ?? 'Plataforma de mineração de criptomoedas'; ?></p>
-            <a href="/register" class="btn">Começar Agora</a>
-        </section>
+            <p><?php echo $description ?? 'A plataforma de mineração de criptomoedas mais confiável do mercado.'; ?></p>
+            <p>Comece a minerar hoje mesmo e obtenha retornos diários!</p>
+            <a href="/register" class="btn">Comece Agora</a>
+        </div>
+    </section>
 
+    <div class="container">
         <section class="features">
             <div class="feature">
                 <h3>Mineração Simplificada</h3>
-                <p>Comece a minerar criptomoedas sem conhecimento técnico ou equipamentos caros.</p>
+                <p>Sem necessidade de equipamentos caros ou conhecimentos técnicos. Nossa plataforma faz todo o trabalho para você.</p>
             </div>
             <div class="feature">
-                <h3>Ganhos Diários</h3>
-                <p>Receba pagamentos diários diretamente em sua carteira digital.</p>
+                <h3>Retornos Diários</h3>
+                <p>Receba recompensas diárias baseadas no seu poder de mineração adquirido.</p>
+            </div>
+            <div class="feature">
+                <h3>Segurança Garantida</h3>
+                <p>Todas as transações são registradas na blockchain, garantindo total transparência e segurança.</p>
+            </div>
+            <div class="feature">
+                <h3>Programa de Referência</h3>
+                <p>Convide amigos e ganhe comissões sobre os investimentos deles. Sistema multinível!</p>
             </div>
             <div class="feature">
                 <h3>Suporte 24/7</h3>
-                <p>Nossa equipe está sempre disponível para ajudar com qualquer dúvida.</p>
+                <p>Nossa equipe de suporte está disponível a qualquer momento para responder suas dúvidas.</p>
+            </div>
+            <div class="feature">
+                <h3>Múltiplas Criptomoedas</h3>
+                <p>Minere várias criptomoedas populares, incluindo Bitcoin, Ethereum, Tron e muito mais.</p>
             </div>
         </section>
-    </main>
+
+        <section class="cta">
+            <h2>Pronto para começar sua jornada na mineração?</h2>
+            <p>Crie sua conta gratuita hoje e comece a minerar em minutos.</p>
+            <a href="/register" class="btn">Criar Conta</a>
+        </section>
+    </div>
 
     <footer>
-        <p>&copy; <?php echo date('Y'); ?> Tronmining. Todos os direitos reservados.</p>
+        <div class="container">
+            <p>&copy; <?php echo date('Y'); ?> Tronmining. Todos os direitos reservados.</p>
+        </div>
     </footer>
-
-    <script src="/public/assets/js/main.js"></script>
 </body>
 </html> 
